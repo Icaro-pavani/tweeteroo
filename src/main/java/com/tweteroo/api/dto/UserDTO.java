@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public record UserDTO(
 
-        @NotBlank String username,
+                @NotBlank String username,
 
-        @URL @NotBlank String avatar) {
+                @URL @NotBlank String avatar) {
 }

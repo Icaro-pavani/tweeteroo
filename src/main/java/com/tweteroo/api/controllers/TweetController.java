@@ -11,27 +11,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tweteroo.api.dto.UserDTO;
-import com.tweteroo.api.model.User;
-import com.tweteroo.api.services.UserService;
+import com.tweteroo.api.dto.TweetDTO;
+import com.tweteroo.api.model.Tweet;
+import com.tweteroo.api.services.TweetService;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/sign-up")
-public class UserController {
-    
-    @Autowired
-    private UserService service;
+@RequestMapping("/api/tweets")
+public class TweetController {
 
-    @GetMapping
-    public ResponseEntity<List<User>> listAll() {
-        return ResponseEntity.ok().body(service.listAll());
+    @Autowired
+    private TweetService service;
+    
+    @PostMapping
+    public ResponseEntity<String> create(@RequestBody @Valid TweetDTO req) {
+        service.create(req);
+
+        return new ResponseEntity<String>("OK", HttpStatus.CREATED);
+        
     }
 
-    @PostMapping
-    public ResponseEntity<String> create(@RequestBody @Valid UserDTO req) {
-        service.save(req);
-        return new ResponseEntity<String>("OK", HttpStatus.CREATED);
-    } 
+    @GetMapping
+    public ResponseEntity<List<Tweet>> listAll() {
+        return ResponseEntity.ok().body(service.listAll());
+    }
 }
