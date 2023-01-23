@@ -38,4 +38,8 @@ public class TweetService {
         return tweetsPage.getContent();
     }
 
+    public List<Tweet> listAllByUsername(String username) {
+        return tweetRepository.findAllByUsernameOrderByIdDesc(username);
+    }
+
 }

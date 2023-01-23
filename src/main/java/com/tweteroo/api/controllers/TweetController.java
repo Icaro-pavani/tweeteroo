@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,13 @@ public class TweetController {
     @GetMapping
     public ResponseEntity<List<Tweet>> getAllTweets(@RequestParam(defaultValue = "0") int page){
         List<Tweet> tweets = service.listAll(page);
+
+        return ResponseEntity.ok().body(tweets);
+    }
+
+    @GetMapping("/{username}")
+    public ResponseEntity<List<Tweet>> getTweetsByUser(@PathVariable String username){
+        List<Tweet> tweets = service.listAllByUsername(username);
 
         return ResponseEntity.ok().body(tweets);
     }
