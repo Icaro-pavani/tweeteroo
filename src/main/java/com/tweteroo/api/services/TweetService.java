@@ -1,8 +1,9 @@
 package com.tweteroo.api.services;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.tweteroo.api.dto.TweetDTO;
@@ -26,7 +27,8 @@ public class TweetService {
         tweetRepository.save(tweet);
     }
 
-    public List<Tweet> listAll() {
-        return tweetRepository.findAll();
+    public Page<Tweet> listAll(Pageable page) {
+        return tweetRepository.findAll(page);
     }
+
 }
