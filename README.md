@@ -1,5 +1,6 @@
 # Tweetero
 
+É um projeto que utiliza Java Spring para criar o backend de uma aplicação de tweets, na qual irá armazenar e distribuir os tweets entre os usuários. 
 - Armazenamento de dados
     - Para persistir os dados (usuários e tweets), utilizou-se variáveis globais em memória;
     - O formato de um **usuário** é:
@@ -22,6 +23,8 @@
         ```
 
 ## Rotas
+
+A aplicação, quando está rodando, fica onlin na rota `http:localhost:8080`, disponibilizando as seguintes portas:
         
 - **POST** `api/auth/sign-up`
     - Recebe (pelo body da request), um parâmetro **username** e um **avatar**, contendo o nome do username do usuário e a sua foto de avatar:
