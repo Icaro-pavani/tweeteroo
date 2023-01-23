@@ -24,18 +24,18 @@ public class TweetService {
     @Autowired
     private UserRepository userRepository;
 
-    public void create(TweetDTO data) {
-        User user = userRepository.findByUsername(data.username());
-        Tweet tweet = new Tweet(data, user.getAvatar());
+    public void create(TweetDTO data, String username) {
+        User user = userRepository.findByUsername(username);
+        Tweet tweet = new Tweet(data, user.getAvatar(), user.getUsername());
         tweetRepository.save(tweet);
     }
 
-    public List<Tweet> listAll(int page) {
+    public Page<Tweet> listAll(int page) {
         int size = 5;
         Pageable filters = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
         Page<Tweet> tweetsPage = tweetRepository.findAll(filters);
 
-        return tweetsPage.getContent();
+        return tweetsPage;
     }
 
     public List<Tweet> listAllByUsername(String username) {

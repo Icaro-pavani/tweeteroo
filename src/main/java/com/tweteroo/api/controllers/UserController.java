@@ -20,7 +20,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/sign-up")
+@RequestMapping("/api/auth/sign-up")
 public class UserController {
     
     @Autowired
